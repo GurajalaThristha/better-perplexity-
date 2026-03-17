@@ -135,7 +135,7 @@ function App() {
               boxShadow: "0 8px 30px rgba(0,0,0,0.25)",
             }}
           >
-            <h2 style={{ marginTop: 0, marginBottom: "16px", fontSize: "24px" }}>
+            <h2 style={{ marginTop: 0, marginBottom: "16px", fontSize: "24px", color:"white" }}>
               Answer
             </h2>
 
@@ -166,7 +166,7 @@ function App() {
               boxShadow: "0 8px 30px rgba(0,0,0,0.25)",
             }}
           >
-            <h2 style={{ marginTop: 0, marginBottom: "16px", fontSize: "24px" }}>
+            <h2 style={{ marginTop: 0, marginBottom: "16px", fontSize: "24px", color:"white" }}>
               Sources
             </h2>
 
