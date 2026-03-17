@@ -24,7 +24,7 @@ function App() {
     setSources([]);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/chat", {
+      const response = await axios.post("https://better-perplexity-backend.onrender.com/api/chat", {
         query,
       });
 
