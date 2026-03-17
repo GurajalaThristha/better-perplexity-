@@ -82,7 +82,7 @@ PORT=5000
 ## 📸 Demo
 
 Deployed Link:https://better-perplexity-eta.vercel.app/  
-Video Demo Link:https://www.loom.com/share/919c61404e6e4b209d46794e8b371425 
+Video Demo Link:https://youtu.be/ffax51I7tw4
 
 ---
 
