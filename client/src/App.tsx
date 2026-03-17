@@ -8,6 +8,8 @@ type Source = {
   content: string;
 };
 
+const API_URL = "https://better-perplexity-backend.onrender.com/api/chat";
+
 function App() {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
@@ -24,15 +26,22 @@ function App() {
     setSources([]);
 
     try {
-      const response = await axios.post("https://better-perplexity-backend.onrender.com/api/chat", {
-        query,
-      });
+      const response = await axios.post(
+        API_URL,
+        { query },
+        { timeout: 60000 }
+      );
 
       setAnswer(response.data.answer || "");
       setSources(response.data.sources || []);
-    } catch (err) {
-      console.error(err);
-      setError("Failed to get answer. Please try again.");
+    } catch (err: any) {
+      console.error("Frontend request failed:", err);
+      setError(
+        err?.response?.data?.details ||
+          err?.response?.data?.error ||
+          err?.message ||
+          "Failed to get answer."
+      );
     } finally {
       setLoading(false);
     }
@@ -49,23 +58,11 @@ function App() {
       }}
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <h1
-          style={{
-            fontSize: "36px",
-            fontWeight: 700,
-            marginBottom: "8px",
-          }}
-        >
+        <h1 style={{ fontSize: "36px", fontWeight: 700, marginBottom: "8px" }}>
           Better Perplexity
         </h1>
 
-        <p
-          style={{
-            color: "#94a3b8",
-            marginBottom: "24px",
-            fontSize: "16px",
-          }}
-        >
+        <p style={{ color: "#94a3b8", marginBottom: "24px", fontSize: "16px" }}>
           Ask anything. Get AI answers grounded in live web sources.
         </p>
 
@@ -117,7 +114,7 @@ function App() {
           </div>
 
           {error && (
-            <p style={{ color: "#f87171", marginTop: "12px" }}>{error}</p>
+            <p style={{ color: "#f87171", marginTop: "12px" }}>Error: {error}</p>
           )}
         </div>
 
@@ -138,13 +135,7 @@ function App() {
               boxShadow: "0 8px 30px rgba(0,0,0,0.25)",
             }}
           >
-            <h2
-              style={{
-                marginTop: 0,
-                marginBottom: "16px",
-                fontSize: "24px",
-              }}
-            >
+            <h2 style={{ marginTop: 0, marginBottom: "16px", fontSize: "24px" }}>
               Answer
             </h2>
 
@@ -162,9 +153,7 @@ function App() {
                 {answer}
               </p>
             ) : (
-              <p style={{ color: "#94a3b8" }}>
-                Your answer will appear here.
-              </p>
+              <p style={{ color: "#94a3b8" }}>Your answer will appear here.</p>
             )}
           </div>
 
@@ -177,13 +166,7 @@ function App() {
               boxShadow: "0 8px 30px rgba(0,0,0,0.25)",
             }}
           >
-            <h2
-              style={{
-                marginTop: 0,
-                marginBottom: "16px",
-                fontSize: "24px",
-              }}
-            >
+            <h2 style={{ marginTop: 0, marginBottom: "16px", fontSize: "24px" }}>
               Sources
             </h2>
 
@@ -227,9 +210,7 @@ function App() {
                 ))}
               </div>
             ) : (
-              <p style={{ color: "#94a3b8" }}>
-                Source links will appear here.
-              </p>
+              <p style={{ color: "#94a3b8" }}>Source links will appear here.</p>
             )}
           </div>
         </div>
