@@ -51,8 +51,8 @@ function App() {
     <div
       style={{
         fontFamily: "Inter, Arial, sans-serif",
-        background: "#0f172a",
-        color: "white",
+        background: "#f2f4f9",
+        color: "#0f172a",
         minHeight: "100vh",
         padding: "40px 20px",
       }}
@@ -68,7 +68,7 @@ function App() {
 
         <div
           style={{
-            background: "#1e293b",
+            background: "white",
             padding: "20px",
             borderRadius: "14px",
             marginBottom: "24px",
